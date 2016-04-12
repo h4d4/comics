@@ -1,0 +1,22 @@
+<div class="content">
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <label for="search">Search:</label>
+            <input ng-model="data.title" id="search" class="form-control" placeholder="Filtrar texto">
+            <!-- data-toggle !!!! -->
+            <button type="submit" class="pure-button" data-target="#addComic" data-toggle="modal" type="button">Add Comic</button>
+            <!--<label for="search">Items:</label>
+            <input type="number" min="1" max="8" class="form-control" ng-model="pageSize"> -->
+        </div> 
+    </div>
+    <div class="content">
+        <div class="pure-u-1-4" dir-paginate="comic in comics | filter: data | itemsPerPage: 8" current-page="currentPage">
+                <!--<div class="pure-u-1-4" > <!-- ng-repeat="comic in comics" 
+                    <a>[{ comic.title | cut:true:10:'...' }]</a>-->
+            <img title="[{ comic.title}]"alt="[{ comic.title | cut:true:10:'...' }]" class="pure-img-responsive" src="[{ comic.thumbnailUrl }]">
+                <!--</div>-->
+        </div>
+   </div>
+   <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="js/dependencies/dirPagination.tpl.html">
+    </dir-pagination-controls>
+</div>

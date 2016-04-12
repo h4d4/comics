@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="comics" ng-controller="InitController">	
+<head>
+    <meta charset="utf-8">
+    <!-- <meta content="images/bg.png" property="og:image"> -->
+    <title>Comics</title>
+    <!-- CSS TEMPLATES 
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">-->
+    <link rel="stylesheet" type="text/css" href="css/pure-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <link type="text/css" href="css/images.css"> 
+    <!-- --> <link rel="stylesheet" href="css/marketing.css">
+    <link href="css/pagination.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <style type="text/css">
+        #full-screen-background-image {
+            height: auto; 
+            left: 0; 
+            min-height: 100%;
+            min-width: 1024px;
+            position: fixed;
+            top: 0; 
+            width: 100%; 
+            z-index: -999; 
+        }
+    </style>
+</head>
+
+<body >
+         <img  class="pure-img-responsive"  alt="full screen background image" src="images/city6.jpg" id="full-screen-background-image"/>
+   <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" href="">COMIC ACTION</a>
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover" ng-hide="logueado">
+                    <a href="#" id="menuLink1" class="pure-menu-link">Sign In</a>
+                    <ul class="pure-menu-children">
+                    <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+                        <!--<div ng-show="error">[{ error }]</div>-->
+                        <form name="form-login" class="pure-form pure-form-stacked" ng-submit="login()" role="form" novalidate>
+                            <fieldset>
+                                <label for="user">User</label>
+                                <input id="user" name="user" type="email" placeholder="Email" class="form-control ng-dirty ng-valid ng-valid-required" ng-model="user" required>
+                                <label for="password">Password</label>
+                                <input id="password" name="password" type="password" placeholder="Password" class="form-control ng-dirty ng-valid ng-valid-required" ng-model="password" required>
+                                <button type="submit" class="pure-button" ng-disabled="form.$invalid || dataLoading" class="btn btn-success">Sign In</button>
+                                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                            </fieldset>
+                        </form>
+                        </div>   
+                    </ul>
+                </li>
+                <li class="pure-menu-item"><a href="#/registro"  ng-hide="logueado">Sign Up</a></li>
+                <!--<li class="pure-menu-item"><a href="#modal" class="pure-menu-link" ng-hide="logueado">Sign Up</a></li>
+                <button type="button" ng-dialog="firstDialogId" ng-dialog-controller="InsideCtrl" ng-dialog-data="{{jsonData}}" ng-dialog-class="ngdialog-theme-default" ng-dialog-show-close="false">Open via directive</button>-->
+             <!-- <button type="submit" class="pure-button" ng-click="logout()" ng-show="logueado">Logout</button> -->
+                <li class="pure-menu-item"><a href="#/bye"  ng-show="logueado">Sign Out</a></li>
+            </ul>
+        </div> 
+    
+    </div> 
+    <div class="splash-container">
+        <div class="splash" ng-show="logueado">
+            <h1 class="splash-head">COMIC ACTION</h1>
+            <div ng-view></div>
+        </div>
+    </div> 
+
+	<!-- AngularJS  -->
+<script src="js/dependencies/jquery.js"></script>
+<script defer="true" src="js/dependencies/angular.js"></script>
+<script defer="true" src="js/dependencies/angular-route.js"></script>
+<script defer="true" src="js/dependencies/angular-cookies.js"></script>
+<script src="js/dependencies/sweetalert.min.js"></script>
+<script defer="true" src="js/dependencies/dirPagination.js"></script>
+<script defer="true" src="js/dependencies/textAngular-rangy.min.js"></script>
+<script defer="true" src="js/dependencies/textAngular-sanitize.min.js"></script>
+<script defer="true" src="js/dependencies/textAngular.min.js"></script>
+<script defer="true" src="js/dependencies/textAngular.min.js"></script>
+<script defer="true" src="js/app.js"></script>
+<script defer="true" src="js/routes.js"></script><!-- -->
+<script defer="true" src="js/controllers/InitController.js"></script>
+<script defer="true" src="js/controllers/UserController.js"></script>
+<script defer="true" src="js/controllers/LogoutController.js"></script>
+<script defer="true" src="js/controllers/ListController.js"></script>
+<!--  -->
+
+</body>
+
+</html>	
